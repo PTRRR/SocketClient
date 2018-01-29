@@ -9,7 +9,21 @@
 </head>
 <body>
   <script>
-    var client = new Client('app')  
+    var client = new Client('app')
+    // 
+    client.onMessage(function (data) {
+      switch (data.type) {
+        case 'click':
+        console.log(data.message.text)
+          break
+        default:
+        console.log(data)
+          break
+      }
+    })
+    window.onclick = function () {
+      client.send('*', 'click', {text: 'dummy text'})
+    }
   </script>
 </body>
 </html>
